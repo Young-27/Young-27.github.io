@@ -10,7 +10,7 @@
 
 ## 소개
 
-- **경력**: 5년 · ㈜웨이버스 대리 (2021.11 – 현재)
+- **경력**: 5년 · 웹 개발 (2021.11 – 현재)
 - **주력 기술**: Java · Spring Boot · MyBatis / Vue.js · React · JavaScript / PostgreSQL · Oracle · MySQL
 - **최근 작업**: Python 기반 LLM Agent · MCP 서버 개발 (AI 기반 통합인허가 사전진단 서비스)
 - **자격증**: 정보처리기사, SQL개발자(SQLD), 컴퓨터활용능력 1급
