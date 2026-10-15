@@ -192,6 +192,7 @@ section.block { padding: 96px 0; border-bottom: 1px solid var(--rule); }
 }
 .project details[open] summary::after { transform: rotate(-135deg); top: 32px; }
 .project .p-status { font-size: 13px; color: var(--accent-2); font-weight: 600; display: block; margin-bottom: 2px; }
+.project .p-date { font-size: 13px; color: var(--ink-faint); display: block; margin-bottom: 2px; font-variant-numeric: tabular-nums; }
 .project .p-title { font-size: 18px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.5; display: block; }
 .project .p-part { font-size: 15px; color: var(--ink-soft); display: block; margin-top: 2px; }
 .project .p-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; padding: 0; list-style: none; }
@@ -494,10 +495,10 @@ section.block { view-timeline: --sec block; }
           <li class="project current">
             <details open>
               <summary>
-                <span class="p-status">진행중</span>
+                <span class="p-status">2026.05.27 ~ 진행중</span>
                 <span class="p-title">AI 기반 통합인허가 사전진단 서비스 개발·실증</span>
                 <span class="p-part">LLM Agent, MCP 서버, 연계 API 개발</span>
-                <ul class="p-stack"><li>Python</li><li>MCP</li><li>Spring Boot</li></ul>
+                <ul class="p-stack"><li>Python</li><li>MCP</li><li>Spring Boot</li><li>Vue.js</li></ul>
               </summary>
               <div class="p-body">
                 <h4>담당 기능</h4>
@@ -513,6 +514,7 @@ section.block { view-timeline: --sec block; }
           <li class="project">
             <details>
               <summary>
+                <span class="p-date">2025.09.01 ~ 2026.05.18</span>
                 <span class="p-title">공장설립 인허가 사전진단 서비스 구축 (2차)</span>
                 <span class="p-part">관리 기능, 파일 업로드 처리, 대용량 데이터 성능 개선</span>
                 <ul class="p-stack"><li>Java</li><li>Spring</li><li>PostgreSQL</li><li>OpenLayers</li></ul>
@@ -533,6 +535,7 @@ section.block { view-timeline: --sec block; }
           <li class="project">
             <details>
               <summary>
+                <span class="p-date">2024.05.02 ~ 2025.01.22</span>
                 <span class="p-title">공장인허가 사전진단 서비스 구축</span>
                 <span class="p-part">외부 서비스 세션 연동, 분석 기능, 보고서 출력</span>
                 <ul class="p-stack"><li>Java</li><li>Spring</li><li>ClipReport</li></ul>
@@ -553,6 +556,7 @@ section.block { view-timeline: --sec block; }
           <li class="project">
             <details>
               <summary>
+                <span class="p-date">2023.09.25 ~ 2024.04.09</span>
                 <span class="p-title">23년 디지털트윈 국토서비스 기반 구축 2차</span>
                 <span class="p-part">데이터 갱신 작업·스케줄 관리 시스템</span>
                 <ul class="p-stack"><li>Java 8</li><li>Spring</li><li>MyBatis</li><li>PostgreSQL</li><li>jQuery</li></ul>
@@ -577,6 +581,33 @@ section.block { view-timeline: --sec block; }
           <li class="project">
             <details>
               <summary>
+                <span class="p-date">2022.05.09 ~ 2023.01.31</span>
+                <span class="p-title">클라우드 기반 공간정보 데이터 통합 및 융복합 활용체계 구축 3차</span>
+                <span class="p-part">대국민 K-Geo 플랫폼 콘텐츠 공유·템플릿 기능</span>
+                <ul class="p-stack"><li>Java 8</li><li>Spring</li><li>MyBatis</li><li>PostgreSQL</li><li>jQuery</li></ul>
+              </summary>
+              <div class="p-body">
+                <h4>담당 기능 (주제도 서비스)</h4>
+                <ul>
+                  <li>주제도 내보내기 / 취소</li>
+                  <li>주제도 전체공개 / 취소</li>
+                  <li>템플릿(레이아웃·디자인) 적용 및 변경</li>
+                  <li>툴바 기능 구현</li>
+                </ul>
+                <h4>개발 환경</h4>
+                <ul>
+                  <li>Java 8, JavaScript, jQuery · MyBatis, PostgreSQL · Maven, Spring</li>
+                  <li>IntelliJ IDEA, DBeaver · SVN</li>
+                </ul>
+                <a id="link-9" class="p-link" href="https://kgeop.go.kr/" target="_blank" rel="noopener">서비스 보기 (K-Geo 플랫폼)</a>
+              </div>
+            </details>
+          </li>
+
+          <li class="project">
+            <details>
+              <summary>
+                <span class="p-date">2022.02.01 ~ 2023.09.11</span>
                 <span class="p-title">22년 디지털트윈 국토서비스 기반 구축 1차</span>
                 <span class="p-part">코드·속성 관리 시스템, 데이터 추출 스케줄링</span>
                 <ul class="p-stack"><li>Java 8</li><li>Spring Boot</li><li>MyBatis</li><li>PostgreSQL</li></ul>
@@ -599,31 +630,6 @@ section.block { view-timeline: --sec block; }
                   <li>Java 8, JavaScript, jQuery · MyBatis, PostgreSQL · Maven, Spring Boot</li>
                   <li>IntelliJ IDEA, DBeaver · SVN</li>
                 </ul>
-              </div>
-            </details>
-          </li>
-
-          <li class="project">
-            <details>
-              <summary>
-                <span class="p-title">클라우드 기반 공간정보 데이터 통합 및 융복합 활용체계 구축 3차</span>
-                <span class="p-part">대국민 K-Geo 플랫폼 콘텐츠 공유·템플릿 기능</span>
-                <ul class="p-stack"><li>Java 8</li><li>Spring</li><li>MyBatis</li><li>PostgreSQL</li><li>jQuery</li></ul>
-              </summary>
-              <div class="p-body">
-                <h4>담당 기능 (주제도 서비스)</h4>
-                <ul>
-                  <li>주제도 내보내기 / 취소</li>
-                  <li>주제도 전체공개 / 취소</li>
-                  <li>템플릿(레이아웃·디자인) 적용 및 변경</li>
-                  <li>툴바 기능 구현</li>
-                </ul>
-                <h4>개발 환경</h4>
-                <ul>
-                  <li>Java 8, JavaScript, jQuery · MyBatis, PostgreSQL · Maven, Spring</li>
-                  <li>IntelliJ IDEA, DBeaver · SVN</li>
-                </ul>
-                <a id="link-9" class="p-link" href="https://kgeop.go.kr/" target="_blank" rel="noopener">서비스 보기 (K-Geo 플랫폼)</a>
               </div>
             </details>
           </li>
