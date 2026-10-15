@@ -307,15 +307,15 @@ section.block { view-timeline: --sec block; }
   .marquee .track { animation: marquee 45s linear infinite; }
   .marquee:hover .track { animation-play-state: paused; }
 
+  /* 긴 요소(타임라인 선)는 스크롤 거리에 연동 */
   @supports (animation-timeline: view()) {
-    .rv { animation: fadeUp linear both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
-    .project details { animation: unclip linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
     .timeline::after { animation: growY linear both; animation-timeline: view(); animation-range: cover 10% cover 65%; }
   }
-  .js.no-sda .rv { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
-  .js.no-sda .rv.is-in { opacity: 1; transform: none; }
-  .js.no-sda .project details { clip-path: inset(6% 6% 6% 6% round 10px); transition: clip-path .8s cubic-bezier(.2,.7,.2,1); }
-  .js.no-sda .project.is-in details { clip-path: inset(0 round 10px); }
+  /* 짧은 요소는 화면에 들어오면 시간 기반으로 재생 (스크롤 연동이면 휠 한 칸에 끝나 보이지 않음) */
+  .js .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .js .rv.is-in { opacity: 1; transform: none; }
+  .js .project details { clip-path: inset(6% 6% 6% 6% round 10px); transition: clip-path .8s cubic-bezier(.2,.7,.2,1); }
+  .js .project.is-in details { clip-path: inset(0 round 10px); }
 }
 @keyframes lineUp { from { transform: translateY(105%); } to { transform: none; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
@@ -702,13 +702,17 @@ section.block { view-timeline: --sec block; }
   systemDark.addEventListener("change", syncLabel);
   syncLabel();
 
-  /* 화면에 들어온 요소 표시: 타임라인 점, (미지원 브라우저) 등장 효과 */
+  /* 화면에 들어온 요소 표시: 등장 효과, 카드 펼침, 타임라인 점 (같이 들어온 요소는 순서대로) */
   var io = new IntersectionObserver(function (entries) {
+    var order = 0;
     entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+      if (!e.isIntersecting) return;
+      e.target.style.transitionDelay = (order++ * 90) + "ms";
+      e.target.classList.add("is-in");
+      io.unobserve(e.target);
     });
   }, { rootMargin: "0px 0px -12% 0px" });
-  document.querySelectorAll(sda ? ".project" : ".rv, .project").forEach(function (el) { io.observe(el); });
+  document.querySelectorAll(".rv, .project").forEach(function (el) { io.observe(el); });
 
   /* 현재 섹션에 맞춰 메뉴 밑줄 이동 */
   var nav = document.querySelector(".nav");
