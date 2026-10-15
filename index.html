@@ -78,7 +78,13 @@ a:hover { text-decoration-thickness: 2px; }
   border-bottom: 1px solid var(--rule);
 }
 .site-head .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-.brand { font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+.brand {
+  display: inline-grid; place-items: center; width: 36px; height: 36px; margin-left: -8px;
+  border-radius: 8px; color: var(--ink); text-decoration: none;
+  transition: color .2s, background-color .2s;
+}
+.brand:hover { color: var(--accent); background: var(--paper-2); }
+.brand svg { width: 22px; height: 22px; }
 .nav { display: flex; gap: 28px; }
 .nav a { color: var(--ink-soft); text-decoration: none; font-size: 15px; }
 .nav a:hover { color: var(--ink); }
@@ -372,7 +378,9 @@ section.block { view-timeline: --sec block; }
 
 <header class="site-head">
   <div class="wrap">
-    <a id="link-1" class="brand" href="#top">이선영</a>
+    <a id="link-1" class="brand" href="#top" aria-label="맨 위로 (홈)" title="홈">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/></svg>
+    </a>
     <div class="head-right">
     <nav class="nav" aria-label="주요 섹션">
       <a id="link-2" href="#about">소개</a>
