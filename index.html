@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이선영 포트폴리오</title>
+<meta name="description" content="화면부터 서버, 데이터베이스까지 서비스를 끝까지 만드는 5년차 풀스택 개발자 이선영의 포트폴리오">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* 라이트: 로열 인디고 / 다크: 미드나잇 네이비 */
+:root {
+  --on-accent: #FFFFFF;
+  --paper: #F8F8FC;
+  --paper-2: #EEEFF8;
+  --ink: #1B1E3D;
+  --ink-soft: #4A4E70;
+  --ink-faint: #7A7D99;
+  --accent: #3D4FD1;
+  --accent-2: #0B7C6F;
+  --rule: #E0E2EF;
+  --focus: #3D4FD1;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --on-accent: #0E1621;
+    --paper: #0E1621;
+    --paper-2: #16212F;
+    --ink: #E9EEF4;
+    --ink-soft: #A9B5C3;
+    --ink-faint: #7A8A9E;
+    --accent: #78A9FF;
+    --accent-2: #5CC8A8;
+    --rule: #223044;
+    --focus: #78A9FF;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --on-accent: #0E1621;
+  --paper: #0E1621;
+  --paper-2: #16212F;
+  --ink: #E9EEF4;
+  --ink-soft: #A9B5C3;
+  --ink-faint: #7A8A9E;
+  --accent: #78A9FF;
+  --accent-2: #5CC8A8;
+  --rule: #223044;
+  --focus: #78A9FF;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "IBM Plex Sans KR", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+/* ---------- Header ---------- */
+.site-head {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.brand { font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+.nav { display: flex; gap: 28px; }
+.nav a { color: var(--ink-soft); text-decoration: none; font-size: 15px; }
+.nav a:hover { color: var(--ink); }
+
+.head-right { display: flex; align-items: center; gap: 28px; align-self: stretch; }
+.theme-toggle {
+  display: inline-grid; place-items: center; width: 36px; height: 36px; padding: 0;
+  border: 1px solid var(--rule); border-radius: 8px; background: transparent; color: var(--ink-soft);
+  cursor: pointer; transition: color .2s, border-color .2s, background-color .2s;
+}
+.theme-toggle:hover { color: var(--ink); border-color: var(--ink-faint); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+}
+
+/* ---------- Hero ---------- */
+.hero { border-bottom: 1px solid var(--rule); }
+.hero .wrap {
+  display: grid; grid-template-columns: 1.35fr 1fr; gap: 64px; align-items: end;
+  padding-top: 112px; padding-bottom: 104px;
+}
+.hero-role { color: var(--accent-2); font-weight: 500; margin: 0 0 18px; font-size: 16px; }
+.hero h1 {
+  font-size: clamp(40px, 6vw, 68px);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  margin: 0 0 28px;
+}
+.hero-lede { font-size: 18.5px; color: var(--ink-soft); max-width: 32em; margin: 0 0 36px; }
+.hero-facts { display: flex; flex-wrap: wrap; gap: 12px 40px; margin: 0; padding: 0; list-style: none; }
+.hero-facts li { display: flex; flex-direction: column; }
+.hero-facts .k { font-size: 13px; color: var(--ink-faint); }
+.hero-facts .v { font-weight: 600; font-size: 17px; }
+
+/* 풀스택 레이어 다이어그램: 화면 → 서버 → 데이터 → AI */
+.stack { margin: 0; padding: 0; list-style: none; position: relative; }
+.stack::before {
+  content: ""; position: absolute; left: 6px; top: 22px; bottom: 22px; width: 2px;
+  background: linear-gradient(var(--accent), var(--accent-2));
+  border-radius: 2px;
+}
+.stack li { position: relative; padding: 14px 0 14px 34px; border-top: 1px solid var(--rule); }
+.stack li:last-child { border-bottom: 1px solid var(--rule); }
+.stack li::before {
+  content: ""; position: absolute; left: 0; top: 22px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--paper); border: 2px solid var(--accent);
+}
+.stack li:last-child::before { border-color: var(--accent-2); background: var(--accent-2); }
+.stack .layer { font-size: 13px; color: var(--ink-faint); display: block; }
+.stack .tech { font-weight: 600; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .stack li { opacity: 0; transform: translateX(-8px); animation: in .5s ease forwards; }
+  .stack li:nth-child(1) { animation-delay: .6s; }
+  .stack li:nth-child(2) { animation-delay: .72s; }
+  .stack li:nth-child(3) { animation-delay: .84s; }
+  .stack li:nth-child(4) { animation-delay: .96s; }
+}
+@keyframes in { to { opacity: 1; transform: none; } }
+
+/* ---------- Sections ---------- */
+section.block { padding: 96px 0; border-bottom: 1px solid var(--rule); }
+.block-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
+.block-title { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin: 0; position: sticky; top: 92px; align-self: start; }
+.block-title small { display: block; font-size: 14px; font-weight: 400; color: var(--ink-faint); margin-top: 4px; letter-spacing: 0; }
+
+.about p { margin: 0 0 1.1em; max-width: 40em; color: var(--ink-soft); }
+.about p:first-child { color: var(--ink); font-size: 20px; line-height: 1.65; }
+.strengths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--rule); }
+.strengths h3 { font-size: 16px; margin: 0 0 6px; font-weight: 600; }
+.strengths p { font-size: 15px; color: var(--ink-soft); margin: 0; line-height: 1.7; }
+
+/* Skills */
+.skill-row { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 20px 0; border-top: 1px solid var(--rule); }
+.skill-row:last-child { border-bottom: 1px solid var(--rule); }
+.skill-row h3 { margin: 0; font-size: 15px; font-weight: 500; color: var(--ink-faint); }
+.skill-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.skill-row li { font-weight: 500; }
+
+/* Experience */
+.company { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin: 0 0 8px; }
+.company h3 { margin: 0; font-size: 24px; letter-spacing: -0.02em; }
+.company .meta { color: var(--ink-faint); font-size: 15px; }
+.company-note { color: var(--ink-soft); margin: 0 0 40px; }
+
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 1px; background: var(--rule); }
+.project { position: relative; padding-left: 40px; margin-bottom: 18px; }
+.project::before {
+  content: ""; position: absolute; left: 1px; top: 26px;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--paper); border: 2px solid var(--accent);
+}
+.project.current::before { background: var(--accent-2); border-color: var(--accent-2); box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent-2) 20%, transparent); }
+
+.project details { background: var(--paper-2); border-radius: 10px; }
+.project summary { list-style: none; cursor: pointer; padding: 18px 56px 18px 22px; position: relative; }
+.project summary::-webkit-details-marker { display: none; }
+.project summary::after {
+  content: ""; position: absolute; right: 24px; top: 28px;
+  width: 9px; height: 9px;
+  border-right: 2px solid var(--ink-faint); border-bottom: 2px solid var(--ink-faint);
+  transform: rotate(45deg); transition: transform .2s ease;
+}
+.project details[open] summary::after { transform: rotate(-135deg); top: 32px; }
+.project .p-status { font-size: 13px; color: var(--accent-2); font-weight: 600; display: block; margin-bottom: 2px; }
+.project .p-title { font-size: 18px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.5; display: block; }
+.project .p-part { font-size: 15px; color: var(--ink-soft); display: block; margin-top: 2px; }
+.project .p-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; padding: 0; list-style: none; }
+.project .p-stack li { font-size: 13px; padding: 2px 10px; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-soft); background: var(--paper); }
+
+.p-body { padding: 4px 0 22px; border-top: 1px solid var(--rule); margin: 0 22px; }
+.p-body h4 { font-size: 14px; color: var(--ink-faint); font-weight: 500; margin: 18px 0 6px; }
+.p-body ul { margin: 0; padding-left: 1.1em; }
+.p-body li { margin: 2px 0; font-size: 15.5px; }
+.p-body li::marker { color: var(--accent); }
+.p-link { display: inline-block; margin-top: 14px; font-size: 15px; font-weight: 500; }
+
+/* Education & certs */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.two-col h3 { font-size: 15px; color: var(--ink-faint); font-weight: 500; margin: 0 0 12px; }
+.rows { list-style: none; margin: 0; padding: 0; }
+.rows li { padding: 16px 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 96px 1fr; gap: 16px; }
+.rows .when { color: var(--ink-faint); font-size: 15px; font-variant-numeric: tabular-nums; }
+.rows .what { font-weight: 600; }
+.rows .sub { display: block; font-weight: 400; color: var(--ink-soft); font-size: 15px; }
+
+/* Contact */
+.contact h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.03em; line-height: 1.25; margin: 0 0 20px; max-width: 16em; }
+.contact p { color: var(--ink-soft); margin: 0 0 32px; max-width: 34em; }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 22px; border-radius: 8px; font-weight: 500; font-size: 16px;
+  text-decoration: none; border: 1px solid var(--ink); color: var(--ink);
+}
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn:hover { text-decoration: none; background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn svg { width: 18px; height: 18px; }
+
+footer { padding: 36px 0 48px; color: var(--ink-faint); font-size: 14px; }
+
+/* ---------- Scroll effects ---------- */
+/* 읽기 진행 막대 */
+.progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 20;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform-origin: 0 50%; transform: scaleX(var(--p, 0));
+}
+@supports (animation-timeline: scroll()) {
+  .progress { animation: growX linear both; animation-timeline: scroll(root); }
+}
+@keyframes growX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* 메뉴 현재 위치 밑줄 */
+.nav { position: relative; align-self: stretch; align-items: center; }
+.nav a[aria-current="true"] { color: var(--ink); }
+.nav-ind {
+  position: absolute; bottom: -1px; left: 0; height: 2px; width: 0;
+  background: var(--accent); opacity: 0;
+  transition: left .35s cubic-bezier(.2,.7,.2,1), width .35s cubic-bezier(.2,.7,.2,1), opacity .2s;
+}
+
+/* 숫자 요약 줄 */
+.stats { border-bottom: 1px solid var(--rule); }
+.stats .wrap { display: grid; grid-template-columns: repeat(3, 1fr); }
+.stat { padding: 36px 0 36px 28px; border-left: 1px solid var(--rule); }
+.stat:first-child { padding-left: 0; border-left: 0; }
+.stat .num { font-size: clamp(40px, 5vw, 56px); font-weight: 700; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat .unit { font-size: 18px; font-weight: 600; margin-left: 4px; color: var(--ink-soft); }
+.stat p { margin: 10px 0 0; color: var(--ink-faint); font-size: 15px; }
+
+/* 섹션 제목 옆 진행 막대 */
+section.block { view-timeline: --sec block; }
+.block-title { padding-left: 16px; }
+.block-title::before, .block-title::after {
+  content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; border-radius: 2px;
+}
+.block-title::before { background: var(--rule); }
+.block-title::after {
+  background: linear-gradient(var(--accent), var(--accent-2));
+  transform-origin: top; transform: scaleY(var(--sp, 0));
+}
+@supports (animation-timeline: view()) {
+  .block-title::after { animation: growY linear both; animation-timeline: --sec; animation-range: contain 0% contain 100%; }
+}
+@keyframes growY { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+/* 기술 이름 흐르는 줄 */
+.marquee {
+  overflow: hidden; margin-bottom: 28px; padding: 6px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee .track { display: flex; width: max-content; }
+.marquee ul { display: flex; gap: 40px; margin: 0; padding: 0 40px 0 0; list-style: none; }
+.marquee li { font-size: 22px; font-weight: 500; color: var(--ink-faint); white-space: nowrap; letter-spacing: -0.01em; }
+
+/* 경력 타임라인 선 그리기 */
+.timeline::after {
+  content: ""; position: absolute; left: 6px; top: 10px; bottom: 10px; width: 3px; border-radius: 3px;
+  background: linear-gradient(var(--accent), var(--accent-2));
+  transform-origin: top; transform: scaleY(var(--tl, 1));
+}
+.project::before { z-index: 1; transition: background-color .4s ease, border-color .4s ease; }
+.project.is-in::before { background: var(--accent-2); border-color: var(--accent-2); }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 첫 화면 제목 한 줄씩 */
+  .hero h1 .ln { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+  .hero h1 .ln > span { display: inline-block; animation: lineUp .9s cubic-bezier(.2,.7,.2,1) both; }
+  .hero h1 .ln:nth-child(2) > span { animation-delay: .08s; }
+  .hero h1 .ln:nth-child(3) > span { animation-delay: .16s; }
+  .hero h1 .ln:nth-child(4) > span { animation-delay: .24s; }
+  .hero-role, .hero-lede, .hero-facts { animation: fadeUp .8s ease both; }
+  .hero-lede { animation-delay: .4s; }
+  .hero-facts { animation-delay: .55s; }
+
+  .marquee .track { animation: marquee 45s linear infinite; }
+  .marquee:hover .track { animation-play-state: paused; }
+
+  @supports (animation-timeline: view()) {
+    .rv { animation: fadeUp linear both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
+    .project details { animation: unclip linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+    .timeline::after { animation: growY linear both; animation-timeline: view(); animation-range: cover 10% cover 65%; }
+  }
+  .js.no-sda .rv { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .js.no-sda .rv.is-in { opacity: 1; transform: none; }
+  .js.no-sda .project details { clip-path: inset(6% 6% 6% 6% round 10px); transition: clip-path .8s cubic-bezier(.2,.7,.2,1); }
+  .js.no-sda .project.is-in details { clip-path: inset(0 round 10px); }
+}
+@keyframes lineUp { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes unclip { from { clip-path: inset(6% 6% 6% 6% round 10px); } to { clip-path: inset(0 round 10px); } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; gap: 48px; }
+  .block-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .block-title { position: static; }
+  .strengths { grid-template-columns: 1fr; gap: 24px; }
+  .two-col { grid-template-columns: 1fr; }
+  .nav { display: none; }
+  .stat { padding-left: 20px; }
+}
+@media (max-width: 560px) {
+  .wrap { padding: 0 16px; }
+  body { font-size: 16px; }
+  .hero .wrap { padding-top: 64px; padding-bottom: 64px; }
+  .hero-lede { font-size: 17px; }
+  section.block { padding: 64px 0; }
+  .skill-row { grid-template-columns: 1fr; gap: 8px; }
+  .project { padding-left: 28px; }
+  .p-body { margin: 0 16px; }
+  .project summary { padding: 16px 44px 16px 16px; }
+  .project summary::after { right: 18px; }
+  .rows li { grid-template-columns: 1fr; gap: 2px; }
+  .stats .wrap { grid-template-columns: 1fr; }
+  .stat, .stat:first-child { padding: 22px 0; border-left: 0; border-top: 1px solid var(--rule); }
+  .stat:first-child { border-top: 0; }
+}
+@media print {
+  .site-head { display: none; }
+  .project details { background: none; }
+}
+</style>
+<script>
+  /* 스크롤 연동 CSS 지원 여부를 미리 표시 (지원하지 않으면 JS 대체 효과 사용) */
+  (function (d) {
+    var sda = !!(window.CSS && CSS.supports("animation-timeline: view()"));
+    d.classList.add("js", sda ? "sda" : "no-sda");
+    try {
+      var saved = localStorage.getItem("theme");
+      if (saved === "light" || saved === "dark") d.setAttribute("data-theme", saved);
+    } catch (e) {}
+  })(document.documentElement);
+</script>
+</head>
+<body>
+<div id="root">
+<div class="progress" aria-hidden="true"></div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a id="link-1" class="brand" href="#top">이선영</a>
+    <div class="head-right">
+    <nav class="nav" aria-label="주요 섹션">
+      <a id="link-2" href="#about">소개</a>
+      <a id="link-3" href="#skills">기술</a>
+      <a id="link-4" href="#experience">경력</a>
+      <a id="link-5" href="#education">학력·자격</a>
+      <a id="link-6" href="#contact">연락</a>
+      <span class="nav-ind" aria-hidden="true"></span>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="다크 모드로 전환">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="intro">
+    <div class="wrap">
+      <div>
+        <p class="hero-role">5년차 풀스택 개발자</p>
+        <h1><span class="ln"><span>화면부터 서버,</span></span><span class="ln"><span>데이터베이스까지</span></span><span class="ln"><span>서비스를 끝까지</span></span><span class="ln"><span>만듭니다.</span></span></h1>
+        <p class="hero-lede">
+          Java·Spring 백엔드와 Vue·React 프론트엔드로 대규모 공공 웹서비스를 개발해 왔습니다.
+          최근에는 Python으로 AI Agent와 MCP 서버를 만들며 기존 서비스에 AI를 연결하고 있습니다.
+        </p>
+        <ul class="hero-facts">
+          <li><span class="k">경력</span><span class="v">5년 · ㈜웨이버스 대리</span></li>
+          <li><span class="k">자격</span><span class="v">정보처리기사 · SQLD</span></li>
+        </ul>
+      </div>
+      <ol class="stack" aria-label="다루는 기술 영역">
+        <li><span class="layer">화면</span><span class="tech">Vue.js · React · JavaScript</span></li>
+        <li><span class="layer">서버</span><span class="tech">Java · Spring Boot · MyBatis</span></li>
+        <li><span class="layer">데이터</span><span class="tech">PostgreSQL · Oracle · MySQL</span></li>
+        <li><span class="layer">AI</span><span class="tech">Python · LLM Agent · MCP</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="경력 요약">
+    <div class="wrap">
+      <div class="stat"><span class="num" data-to="5">5</span><span class="unit">년</span><p>웹 개발 경력</p></div>
+      <div class="stat"><span class="num" data-to="6">6</span><span class="unit">개</span><p>공공 웹서비스 프로젝트</p></div>
+      <div class="stat"><span class="num" data-to="3">3</span><span class="unit">개</span><p>보유 자격증</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap block-grid">
+      <h2 class="block-title">소개</h2>
+      <div class="about">
+        <p class="rv">요구사항을 화면 설계, API, 데이터 모델까지 한 흐름으로 이해하고, 혼자서도 기능 하나를 처음부터 끝까지 완성할 수 있는 개발자입니다.</p>
+        <p class="rv">Vue.js, React, jQuery로 사용자 친화적인 화면과 인터랙션을 만들고, Java·Spring·MyBatis로 서버와 API를 개발합니다. PostgreSQL, Oracle, MySQL 환경에서 데이터를 설계하고 다뤄 왔으며, 파일 업로드·스케줄링·보고서 출력·외부 서비스 연동 등 실무에서 자주 필요한 기능을 다양하게 구현했습니다.</p>
+        <p class="rv">지도·3D 기반의 복잡한 공공 서비스를 다루며 쌓은 경험 덕분에, 낯선 도메인도 빠르게 파악하고 개발에 적용하는 데 자신 있습니다.</p>
+
+        <div class="strengths">
+          <div class="rv">
+            <h3>엔드투엔드 개발</h3>
+            <p>프론트엔드, 백엔드, DB를 모두 다뤄 기능 단위로 끝까지 책임지고 완성합니다.</p>
+          </div>
+          <div class="rv">
+            <h3>성능 문제 해결</h3>
+            <p>대용량 데이터를 처리하는 서비스에서 병목 구간을 찾아 개선한 경험이 있습니다.</p>
+          </div>
+          <div class="rv">
+            <h3>읽히는 코드와 소통</h3>
+            <p>일관된 스타일과 주석으로 팀원이 이해하기 쉬운 코드를 쓰고, 막히는 문제는 빠르게 공유합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="wrap block-grid">
+      <h2 class="block-title">기술</h2>
+      <div>
+        <div class="marquee" aria-hidden="true"><div class="track"><ul><li>Java</li><li>Spring Boot</li><li>MyBatis</li><li>Vue.js</li><li>React</li><li>JavaScript</li><li>PostgreSQL</li><li>Oracle</li><li>MySQL</li><li>Python</li><li>LLM Agent</li><li>MCP</li><li>jQuery</li><li>HTML5 / CSS3</li></ul><ul><li>Java</li><li>Spring Boot</li><li>MyBatis</li><li>Vue.js</li><li>React</li><li>JavaScript</li><li>PostgreSQL</li><li>Oracle</li><li>MySQL</li><li>Python</li><li>LLM Agent</li><li>MCP</li><li>jQuery</li><li>HTML5 / CSS3</li></ul></div></div>
+        <div class="skill-row rv">
+          <h3>Backend</h3>
+          <ul><li>Java</li><li>Spring Framework</li><li>Spring Boot</li><li>MyBatis</li><li>Servlet / JSP</li></ul>
+        </div>
+        <div class="skill-row rv">
+          <h3>Frontend</h3>
+          <ul><li>JavaScript</li><li>Vue.js</li><li>React</li><li>jQuery</li><li>Ajax</li><li>HTML5 / CSS3</li></ul>
+        </div>
+        <div class="skill-row rv">
+          <h3>Database</h3>
+          <ul><li>PostgreSQL</li><li>Oracle SQL</li><li>MySQL</li></ul>
+        </div>
+        <div class="skill-row rv">
+          <h3>AI · Python</h3>
+          <ul><li>Python</li><li>LLM Agent</li><li>MCP 서버 · tools</li></ul>
+        </div>
+        <div class="skill-row rv">
+          <h3>Tools</h3>
+          <ul><li>IntelliJ IDEA</li><li>Eclipse</li><li>DBeaver</li><li>Maven</li><li>SVN</li></ul>
+        </div>
+        <div class="skill-row rv">
+          <h3>도메인 경험</h3>
+          <ul><li>공공기관 SI</li><li>지도 · 공간정보 (OpenLayers)</li><li>3D · BIM 연계</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="wrap block-grid">
+      <h2 class="block-title">경력<small>총 5년</small></h2>
+      <div>
+        <div class="company rv">
+          <h3>㈜웨이버스</h3>
+          <span class="meta">대리 · 웹개발 · 2021.11 – 현재</span>
+        </div>
+        <p class="company-note rv">공공기관 웹서비스 구축 프로젝트에서 풀스택 개발을 맡았습니다. 최근 프로젝트부터 정리했습니다.</p>
+
+        <ol class="timeline">
+          <li class="project current">
+            <details open>
+              <summary>
+                <span class="p-status">진행중</span>
+                <span class="p-title">AI 기반 통합인허가 사전진단 서비스 개발·실증</span>
+                <span class="p-part">LLM Agent, MCP 서버, 연계 API 개발</span>
+                <ul class="p-stack"><li>Python</li><li>MCP</li><li>Spring Boot</li></ul>
+              </summary>
+              <div class="p-body">
+                <h4>담당 기능</h4>
+                <ul>
+                  <li>공간탐색·토지특성 Agent 구현 (Python)</li>
+                  <li>공간탐색·토지특성 MCP 서버 및 tools 구현 (Python)</li>
+                  <li>Agent가 호출하는 공간탐색·토지특성 API 구현 (Spring Boot)</li>
+                </ul>
+              </div>
+            </details>
+          </li>
+
+          <li class="project">
+            <details>
+              <summary>
+                <span class="p-title">공장설립 인허가 사전진단 서비스 구축 (2차)</span>
+                <span class="p-part">관리 기능, 파일 업로드 처리, 대용량 데이터 성능 개선</span>
+                <ul class="p-stack"><li>Java</li><li>Spring</li><li>PostgreSQL</li><li>OpenLayers</li></ul>
+              </summary>
+              <div class="p-body">
+                <h4>담당 기능</h4>
+                <ul>
+                  <li>산업단지별 관리기본계획 관리 기능</li>
+                  <li>SHP/DXF 파일 업로드 및 레이어 발행 서비스</li>
+                  <li>지도 기본 기능 구축, 공간정보 조회 및 가시화</li>
+                  <li>공장설립가능영역 레이어 발행 및 가시화, <strong>병목현상 해결</strong></li>
+                </ul>
+                <a id="link-7" class="p-link" href="https://www.factoryon.go.kr/geon/map/map.do" target="_blank" rel="noopener">서비스 보기 (팩토리온)</a>
+              </div>
+            </details>
+          </li>
+
+          <li class="project">
+            <details>
+              <summary>
+                <span class="p-title">공장인허가 사전진단 서비스 구축</span>
+                <span class="p-part">외부 서비스 세션 연동, 분석 기능, 보고서 출력</span>
+                <ul class="p-stack"><li>Java</li><li>Spring</li><li>ClipReport</li></ul>
+              </summary>
+              <div class="p-body">
+                <h4>담당 기능</h4>
+                <ul>
+                  <li>브이월드 – 인허가 사전진단 서비스 간 세션 연결</li>
+                  <li>반경 및 간격을 설정해 규제구역을 확인하는 서비스</li>
+                  <li>경사도 분석 (3D 연계)</li>
+                  <li>분석보고서 출력 (ClipReport)</li>
+                </ul>
+                <a id="link-8" class="p-link" href="https://pss.vworld.kr/fctrMapMain.do" target="_blank" rel="noopener">서비스 보기 (브이월드)</a>
+              </div>
+            </details>
+          </li>
+
+          <li class="project">
+            <details>
+              <summary>
+                <span class="p-title">23년 디지털트윈 국토서비스 기반 구축 2차</span>
+                <span class="p-part">데이터 갱신 작업·스케줄 관리 시스템</span>
+                <ul class="p-stack"><li>Java 8</li><li>Spring</li><li>MyBatis</li><li>PostgreSQL</li><li>jQuery</li></ul>
+              </summary>
+              <div class="p-body">
+                <h4>담당 기능 (벡터타일 갱신 체계 구축)</h4>
+                <ul>
+                  <li>POI 등록</li>
+                  <li>작업 관리</li>
+                  <li>스케줄 관리</li>
+                  <li>타일 결과 관리</li>
+                </ul>
+                <h4>개발 환경</h4>
+                <ul>
+                  <li>Java 8, JavaScript, jQuery · MyBatis, PostgreSQL · Maven, Spring</li>
+                  <li>IntelliJ IDEA, DBeaver · SVN</li>
+                </ul>
+              </div>
+            </details>
+          </li>
+
+          <li class="project">
+            <details>
+              <summary>
+                <span class="p-title">22년 디지털트윈 국토서비스 기반 구축 1차</span>
+                <span class="p-part">코드·속성 관리 시스템, 데이터 추출 스케줄링</span>
+                <ul class="p-stack"><li>Java 8</li><li>Spring Boot</li><li>MyBatis</li><li>PostgreSQL</li></ul>
+              </summary>
+              <div class="p-body">
+                <h4>BIM 범용 기능 개발</h4>
+                <ul>
+                  <li>3D 오브젝트별 속성정보(코드성 정보) 관리</li>
+                  <li>속성정보 코드를 기반으로 3D 서비스의 객체 속성 그룹화 (BIM-GIS 연계)</li>
+                  <li>시스템 공통 코드 관리</li>
+                </ul>
+                <h4>국가중점개방데이터 추출 관리 및 현황</h4>
+                <ul>
+                  <li>추출 목록·상세 조회, 수정, 삭제 (CRUD)</li>
+                  <li>추출 스케줄 등록</li>
+                  <li>추출 현황 조회 (추출 상태, 일시 등)</li>
+                </ul>
+                <h4>개발 환경</h4>
+                <ul>
+                  <li>Java 8, JavaScript, jQuery · MyBatis, PostgreSQL · Maven, Spring Boot</li>
+                  <li>IntelliJ IDEA, DBeaver · SVN</li>
+                </ul>
+              </div>
+            </details>
+          </li>
+
+          <li class="project">
+            <details>
+              <summary>
+                <span class="p-title">클라우드 기반 공간정보 데이터 통합 및 융복합 활용체계 구축 3차</span>
+                <span class="p-part">대국민 K-Geo 플랫폼 콘텐츠 공유·템플릿 기능</span>
+                <ul class="p-stack"><li>Java 8</li><li>Spring</li><li>MyBatis</li><li>PostgreSQL</li><li>jQuery</li></ul>
+              </summary>
+              <div class="p-body">
+                <h4>담당 기능 (주제도 서비스)</h4>
+                <ul>
+                  <li>주제도 내보내기 / 취소</li>
+                  <li>주제도 전체공개 / 취소</li>
+                  <li>템플릿(레이아웃·디자인) 적용 및 변경</li>
+                  <li>툴바 기능 구현</li>
+                </ul>
+                <h4>개발 환경</h4>
+                <ul>
+                  <li>Java 8, JavaScript, jQuery · MyBatis, PostgreSQL · Maven, Spring</li>
+                  <li>IntelliJ IDEA, DBeaver · SVN</li>
+                </ul>
+                <a id="link-9" class="p-link" href="https://kgeop.go.kr/" target="_blank" rel="noopener">서비스 보기 (K-Geo 플랫폼)</a>
+              </div>
+            </details>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="wrap block-grid">
+      <h2 class="block-title">학력 · 자격</h2>
+      <div class="two-col">
+        <div>
+          <h3>자격증</h3>
+          <ul class="rows rv">
+            <li><span class="when">2025.06</span><span class="what">정보처리기사<span class="sub">한국산업인력공단</span></span></li>
+            <li><span class="when">2024.09</span><span class="what">SQL개발자 (SQLD)<span class="sub">한국데이터베이스진흥센터</span></span></li>
+            <li><span class="when">2017.12</span><span class="what">컴퓨터활용능력 1급<span class="sub">대한상공회의소</span></span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>학력 · 교육</h3>
+          <ul class="rows rv">
+            <li><span class="when">2021.08</span><span class="what">KH정보교육원 수료<span class="sub">디지털 콘텐츠와 웹 융합 응용SW개발자 양성과정</span></span></li>
+            <li><span class="when">2018.02</span><span class="what">수원대학교 졸업<span class="sub">국어국문학과</span></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block contact" id="contact">
+    <div class="wrap">
+      <h2 class="rv">함께 서비스를 만들어 갈 팀을 찾고 있습니다.</h2>
+      <p class="rv">채용이나 협업 관련 문의는 메일로 연락 주세요. 프로젝트 자료와 코드는 GitHub에서 확인하실 수 있습니다.</p>
+      <div class="btns rv">
+        <a id="link-10" class="btn primary" href="https://github.com/Young-27" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub 방문하기
+        </a>
+        <a id="link-11" class="btn" href="mailto:dev.sylee95@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          dev.sylee95@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 이선영</div>
+</footer>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var sda = root.classList.contains("sda");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* 라이트/다크 전환 (선택은 다음 방문에도 유지) */
+  var toggle = document.querySelector(".theme-toggle");
+  var systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+  function currentTheme() {
+    return root.getAttribute("data-theme") || (systemDark.matches ? "dark" : "light");
+  }
+  function syncLabel() {
+    toggle.setAttribute("aria-label", currentTheme() === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환");
+  }
+  toggle.addEventListener("click", function () {
+    var next = currentTheme() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    syncLabel();
+  });
+  systemDark.addEventListener("change", syncLabel);
+  syncLabel();
+
+  /* 화면에 들어온 요소 표시: 타임라인 점, (미지원 브라우저) 등장 효과 */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -12% 0px" });
+  document.querySelectorAll(sda ? ".project" : ".rv, .project").forEach(function (el) { io.observe(el); });
+
+  /* 현재 섹션에 맞춰 메뉴 밑줄 이동 */
+  var nav = document.querySelector(".nav");
+  var ind = document.querySelector(".nav-ind");
+  function setActive(id) {
+    var link = null;
+    nav.querySelectorAll("a").forEach(function (a) {
+      if (a.getAttribute("href") === "#" + id) { link = a; a.setAttribute("aria-current", "true"); }
+      else { a.removeAttribute("aria-current"); }
+    });
+    if (!link) { ind.style.opacity = 0; return; }
+    ind.style.left = link.offsetLeft + "px";
+    ind.style.width = link.offsetWidth + "px";
+    ind.style.opacity = 1;
+  }
+  var navIo = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); });
+  }, { rootMargin: "-40% 0px -55% 0px" });
+  document.querySelectorAll("#intro, section.block[id]").forEach(function (sec) { navIo.observe(sec); });
+
+  /* 숫자 카운트업 (한 번만) */
+  if (!reduce) {
+    var countIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        countIo.unobserve(e.target);
+        var el = e.target, to = +el.dataset.to, start = performance.now(), dur = 1200;
+        (function tick(now) {
+          var t = Math.min((now - start) / dur, 1);
+          el.textContent = Math.round(to * (1 - Math.pow(1 - t, 3)));
+          if (t < 1) requestAnimationFrame(tick);
+        })(start);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll(".stat .num").forEach(function (el) { el.textContent = "0"; countIo.observe(el); });
+  }
+
+  /* 스크롤 연동 CSS 미지원 브라우저(Firefox 등) 대체: 진행 막대, 섹션 막대, 타임라인 */
+  if (!sda) {
+    var bar = document.querySelector(".progress");
+    var sections = document.querySelectorAll("section.block");
+    var timeline = document.querySelector(".timeline");
+    var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
+    var ticking = false;
+    var update = function () {
+      ticking = false;
+      var vh = window.innerHeight, max = root.scrollHeight - vh;
+      bar.style.setProperty("--p", max > 0 ? window.scrollY / max : 0);
+      sections.forEach(function (sec) {
+        var r = sec.getBoundingClientRect();
+        var p = r.height > vh ? -r.top / (r.height - vh) : (vh - r.bottom) / (vh - r.height);
+        sec.style.setProperty("--sp", clamp(p));
+      });
+      if (timeline && !reduce) {
+        var t = timeline.getBoundingClientRect();
+        timeline.style.setProperty("--tl", clamp((vh * 0.8 - t.top) / t.height));
+      }
+    };
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+})();
+</script>
+</body>
+</html>
